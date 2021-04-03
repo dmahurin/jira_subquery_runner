@@ -28,7 +28,7 @@ def get_query_epics(query):
 	maxResults = 50;
 
 	while(True):
-		query=query.replace(' ', '%20').replace('"', '%22')
+		query=query.replace(' ', '%20').replace('"', '%22').replace('+', '%2b')
 		proc = subprocess.Popen([ 'curl', '-s', '-u', email + ':' + token,
 			'-X', 'GET', '-H', "Content-Type: application/json",
 			url + '/rest/api/3/search?startAt=' + str(len(issues)) + '&fields=customfield_' + str(epic_custom_field) + '&jql=' +
@@ -51,7 +51,7 @@ def get_query_issues(query):
 	maxResults = 50;
 
 	while(True):
-		query=query.replace(' ', '%20').replace('"', '%22')
+		query=query.replace(' ', '%20').replace('"', '%22').replace('+', '%2b')
 		proc = subprocess.Popen([ 'curl', '-s', '-u', email + ':' + token,
 			'-X', 'GET', '-H', "Content-Type: application/json",
 			url + '/rest/api/3/search?startAt=' + str(len(issues)) + '&fields=key&jql=' +
